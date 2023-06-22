@@ -114,15 +114,18 @@ class _OnboardingState extends State<Onboarding> {
                             height: 50.0,
                           ),
                           child: Center(
-                            child: Text(
-                                _currentPage == _pages.length - 1
-                                    ? "Get Started"
-                                    : "Next",
-                                style: GoogleFonts.openSans(
-                                    textStyle: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 15.0,
-                                        fontWeight: FontWeight.w500))),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: Text(
+                                  _currentPage == _pages.length - 1
+                                      ? "Get Started"
+                                      : "Next",
+                                  style: GoogleFonts.openSans(
+                                      textStyle: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.w500))),
+                            ),
                           ),
                         ),
                       ),
