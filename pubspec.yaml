@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  shared_preferences: ^2.1.1
+  shared_preferences: ^2.1.2
   google_fonts: ^5.0.0
   qr_flutter: ^4.1.0
   image_picker: ^0.8.9
@@ -74,6 +74,7 @@ flutter:
     - assets/qr_onboarding_1.png
     - assets/qr_onboarding_2.png
     - assets/my_qr_logo.png
+    - assets/upload.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:myqr/onboarding/oboarding_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+import 'homepage.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool isFirstLaunch = prefs.getBool('isFirstLaunch') ?? true;
   runApp( 
     MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -14,7 +20,7 @@ void main() {
         color: Color.fromRGBO(216, 191, 216, 1),
       ),
     ),
-    home: const Onboarding() 
+    home: isFirstLaunch ? Onboarding() : Homepage(), 
   ));
 }
 

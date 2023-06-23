@@ -5,10 +5,10 @@ import 'package:qr_flutter/qr_flutter.dart';
 
 // ignore: must_be_immutable
 class QRImageView extends StatelessWidget {
-   QRImageView(this.controller, this._image, {super.key});
+  QRImageView(this.controller, this._image, {Key? key}) : super(key: key);
 
   final TextEditingController controller;
-   File? _image ;
+  final File? _image;
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +21,15 @@ class QRImageView extends StatelessWidget {
         actions: [
           IconButton(
             splashRadius: 1,
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.close,
-                color: Colors.black,
-                size: 30,
-              ))
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.close,
+              color: Colors.black,
+              size: 30,
+            ),
+          )
         ],
       ),
       body: Center(
@@ -40,13 +41,11 @@ class QRImageView extends StatelessWidget {
             dataModuleShape: QrDataModuleShape.square,
             color: Colors.black,
           ),
-          // You can include embeddedImageStyle Property if you
-          //wanna embed an image from your Asset folder
           eyeStyle: QrEyeStyle(
             eyeShape: QrEyeShape.circle,
             color: Color.fromARGB(255, 190, 174, 179),
           ),
-          embeddedImage: FileImage(_image!),
+          embeddedImage: _image != null ? FileImage(_image!) : null,
           embeddedImageStyle: QrEmbeddedImageStyle(
             size: const Size(
               50,

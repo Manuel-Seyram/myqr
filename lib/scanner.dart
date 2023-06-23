@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class QRViewExample extends StatefulWidget {
-  const QRViewExample({Key? key}) : super(key: key);
+class QRScanner extends StatefulWidget {
+  const QRScanner({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _QRViewExampleState();
+  State<StatefulWidget> createState() => _QRScannerState();
 }
 
-class _QRViewExampleState extends State<QRViewExample> {
+class _QRScannerState extends State<QRScanner> {
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
@@ -28,33 +28,32 @@ class _QRViewExampleState extends State<QRViewExample> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          Expanded(flex: 9, child: _buildQrView(context)),
+          Expanded(flex: 12, child: _buildQrView(context)),
+          const SizedBox(height: 20.0,),
           Container(
-            height: 50,
-            width: 200,
+            height: 30,
+            width: 250,
             decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(20.0), color: const Color(0xFF0E3311).withOpacity(0.5)),
-            child: Expanded(
-              flex: 1,
-                child: FittedBox(
-                  fit: BoxFit.contain,
-                  child: Column(
-                    children: <Widget>[
-                      if (result != null)
-                        GestureDetector(
-                            onTap: () {
-                              _launchUrl();
-                            },
-                            child: Text('${_url}', style: TextStyle(fontSize: 16)))
-                      else
-                        const Text(
-                          'Scan your qr code',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                    ],
+                BoxDecoration(borderRadius: BorderRadius.circular(20.0),),
+            child: FittedBox(
+                    fit: BoxFit.contain,
+                    child: Column(
+                      children: <Widget>[
+                        if (result != null)
+                          GestureDetector(
+                              onTap: () {
+                                _launchUrl();
+                              },
+                              child: Text('${_url}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, decoration: TextDecoration.underline, color: Colors.blueAccent)))
+                        else
+                          const Text(
+                            ''
+                          ),
+                      ],
+                    ),
                   ),
-                ),
-              ),
+
+
             ),
         ],
       ),
@@ -63,8 +62,8 @@ class _QRViewExampleState extends State<QRViewExample> {
 
   Widget _buildQrView(BuildContext context) {
     // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
-    var scanArea = (MediaQuery.of(context).size.width < 400 ||
-            MediaQuery.of(context).size.height < 400)
+    var scanArea = (MediaQuery.of(context).size.width < 200 ||
+            MediaQuery.of(context).size.height < 200)
         ? 150.0
         : 300.0;
     // To ensure the Scanner view is properly sizes after rotation
